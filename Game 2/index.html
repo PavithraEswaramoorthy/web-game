@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        #box
+        {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Changing Box</h1>
+    <p id = "timer">time : 1:00</p>
+    <p id = "total" >total score : </p>
+    <div id = "box" onclick="fun()"></div>
+</body>
+<script>
+    var count = 0;
+    function fun()
+    {
+        count += 1;
+        var x = "total score : " + count;
+        document.getElementById("total").innerHTML = x;
+        document.getElementById("box").style.marginLeft = Math.random()*700 +"px";
+        document.getElementById("box").style.marginTop = Math.random()*500 +"px";
+    }
+    var seconds = 60;
+    function timer()
+    {
+        console.log(seconds);
+        seconds--;
+        var min = Math.floor(seconds/60);
+        var rem = seconds % 60;
+        if(rem < 10)
+            rem += "0" + rem;
+        document.getElementById("timer").innerHTML = "time - " + min + ":" + seconds;
+        if(seconds == 0)
+        {
+            clearTimeout(timerId);
+            window.alert("game over");
+            location.reload();
+        }
+    }
+    var timerId = setInterval(timer, 1000);
+</script>
+</html>
